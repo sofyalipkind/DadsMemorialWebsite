@@ -61,7 +61,6 @@ const galleryMedia = [
     'Ireland.jpg',
     'Istanbul 2025.jpg',
     'Miami. "Life is a beach".jpg',
-    'Miami. _Life is a beach_.jpg',
     'Mission Pizza.jpg',
     'Moss Beach 2025.jpg',
     'Taiwan 1.jpg',
@@ -79,7 +78,6 @@ const galleryMedia = [
     'Москва 4 января 2025.jpg',
     'Москва 4 января 2025_1.jpg',
     'Навеки в памяти :( .jpg',
-    'Навеки в памяти _( .jpg',
     'Щербинка апрель 2022.jpg'
 ];
 
