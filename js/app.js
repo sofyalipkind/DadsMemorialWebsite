@@ -54,12 +54,15 @@ const galleryMedia = [
     '2025_Alcatraz.jpg',
     'At work 1.jpg',
     'At work 2.jpg',
+    'DSC09512_proc_714176590.jpg',
     'Flying Turkish 1.jpg',
     'Flying Turkish 2.jpg',
     'Half Moon Bay 2022.jpg',
     'Ireland.jpg',
     'Istanbul 2025.jpg',
+    'Miami. "Life is a beach".jpg',
     'Miami. _Life is a beach_.jpg',
+    'Mission Pizza.jpg',
     'Moss Beach 2025.jpg',
     'Taiwan 1.jpg',
     'Taiwan 2.jpg',
@@ -75,6 +78,7 @@ const galleryMedia = [
     'teenage_karate.jpg',
     'Москва 4 января 2025.jpg',
     'Москва 4 января 2025_1.jpg',
+    'Навеки в памяти :( .jpg',
     'Навеки в памяти _( .jpg',
     'Щербинка апрель 2022.jpg'
 ];
