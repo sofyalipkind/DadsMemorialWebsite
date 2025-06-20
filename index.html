@@ -112,6 +112,16 @@
         </div>
     </div>
 
+    <!-- Message Lightbox Modal -->
+    <div id="message-lightbox" class="message-lightbox" hidden>
+        <button class="message-lightbox-close" aria-label="Close message">&times;</button>
+        <div class="message-lightbox-content">
+            <div class="message-lightbox-author"></div>
+            <div class="message-lightbox-text"></div>
+            <div class="message-lightbox-date"></div>
+        </div>
+    </div>
+
     <!-- Edge Circuit Patterns -->
     <div class="circuit-edge top left">
         <div class="circuit-pattern">
@@ -119,6 +129,15 @@
             <div class="circuit-line"></div>
             <div class="circuit-line"></div>
             <div class="circuit-node"></div>
+            <svg class="circuit-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g class="circuit-paths">
+                    <path d="M10,10 L30,10 L30,30 L50,30 L50,10 L70,10 L70,50 L90,50"/>
+                    <path d="M20,20 L20,40 L40,40 L40,60 L60,60 L60,40 L80,40 L80,80"/>
+                    <circle cx="30" cy="30" r="2" class="circuit-node-svg"/>
+                    <circle cx="50" cy="50" r="2" class="circuit-node-svg"/>
+                    <circle cx="70" cy="70" r="2" class="circuit-node-svg"/>
+                </g>
+            </svg>
         </div>
     </div>
     <div class="circuit-edge top right">
@@ -127,6 +146,15 @@
             <div class="circuit-line"></div>
             <div class="circuit-line"></div>
             <div class="circuit-node"></div>
+            <svg class="circuit-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g class="circuit-paths">
+                    <path d="M90,10 L70,10 L70,30 L50,30 L50,10 L30,10 L30,50 L10,50"/>
+                    <path d="M80,20 L80,40 L60,40 L60,60 L40,60 L40,40 L20,40 L20,80"/>
+                    <circle cx="70" cy="30" r="2" class="circuit-node-svg"/>
+                    <circle cx="50" cy="50" r="2" class="circuit-node-svg"/>
+                    <circle cx="30" cy="70" r="2" class="circuit-node-svg"/>
+                </g>
+            </svg>
         </div>
     </div>
     <div class="circuit-edge bottom left">
@@ -135,6 +163,15 @@
             <div class="circuit-line"></div>
             <div class="circuit-line"></div>
             <div class="circuit-node"></div>
+            <svg class="circuit-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g class="circuit-paths">
+                    <path d="M10,90 L30,90 L30,70 L50,70 L50,90 L70,90 L70,50 L90,50"/>
+                    <path d="M20,80 L20,60 L40,60 L40,40 L60,40 L60,60 L80,60 L80,20"/>
+                    <circle cx="30" cy="70" r="2" class="circuit-node-svg"/>
+                    <circle cx="50" cy="50" r="2" class="circuit-node-svg"/>
+                    <circle cx="70" cy="30" r="2" class="circuit-node-svg"/>
+                </g>
+            </svg>
         </div>
     </div>
     <div class="circuit-edge bottom right">
@@ -143,6 +180,15 @@
             <div class="circuit-line"></div>
             <div class="circuit-line"></div>
             <div class="circuit-node"></div>
+            <svg class="circuit-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g class="circuit-paths">
+                    <path d="M90,90 L70,90 L70,70 L50,70 L50,90 L30,90 L30,50 L10,50"/>
+                    <path d="M80,80 L80,60 L60,60 L60,40 L40,40 L40,60 L20,60 L20,20"/>
+                    <circle cx="70" cy="70" r="2" class="circuit-node-svg"/>
+                    <circle cx="50" cy="50" r="2" class="circuit-node-svg"/>
+                    <circle cx="30" cy="30" r="2" class="circuit-node-svg"/>
+                </g>
+            </svg>
         </div>
     </div>
     <div class="circuit-edge left">
@@ -150,6 +196,19 @@
             <div class="circuit-line"></div>
             <div class="circuit-line"></div>
             <div class="circuit-line"></div>
+            <svg class="circuit-svg-vertical" viewBox="0 0 100 400" xmlns="http://www.w3.org/2000/svg">
+                <g class="circuit-paths">
+                    <path d="M20,0 L20,50 L40,50 L40,100 L60,100 L60,150 L40,150 L40,200 L60,200 L60,250 L40,250 L40,300 L20,300 L20,350 L40,350 L40,400"/>
+                    <path d="M50,25 L70,25 L70,75 L50,75 L50,125 L70,125 L70,175 L50,175 L50,225 L70,225 L70,275 L50,275 L50,325 L70,325 L70,375"/>
+                    <path d="M30,10 L30,40 L50,40 L50,90 L30,90 L30,140 L50,140 L50,190 L30,190 L30,240 L50,240 L50,290 L30,290 L30,340 L50,340 L50,390"/>
+                    <circle cx="40" cy="50" r="2" class="circuit-node-svg"/>
+                    <circle cx="60" cy="100" r="2" class="circuit-node-svg"/>
+                    <circle cx="40" cy="150" r="2" class="circuit-node-svg"/>
+                    <circle cx="60" cy="200" r="2" class="circuit-node-svg"/>
+                    <circle cx="40" cy="250" r="2" class="circuit-node-svg"/>
+                    <circle cx="60" cy="300" r="2" class="circuit-node-svg"/>
+                </g>
+            </svg>
         </div>
     </div>
     <div class="circuit-edge right">
@@ -157,6 +216,19 @@
             <div class="circuit-line"></div>
             <div class="circuit-line"></div>
             <div class="circuit-line"></div>
+            <svg class="circuit-svg-vertical" viewBox="0 0 100 400" xmlns="http://www.w3.org/2000/svg">
+                <g class="circuit-paths">
+                    <path d="M80,0 L80,50 L60,50 L60,100 L40,100 L40,150 L60,150 L60,200 L40,200 L40,250 L60,250 L60,300 L80,300 L80,350 L60,350 L60,400"/>
+                    <path d="M50,25 L30,25 L30,75 L50,75 L50,125 L30,125 L30,175 L50,175 L50,225 L30,225 L30,275 L50,275 L50,325 L30,325 L30,375"/>
+                    <path d="M70,10 L70,40 L50,40 L50,90 L70,90 L70,140 L50,140 L50,190 L70,190 L70,240 L50,240 L50,290 L70,290 L70,340 L50,340 L50,390"/>
+                    <circle cx="60" cy="50" r="2" class="circuit-node-svg"/>
+                    <circle cx="40" cy="100" r="2" class="circuit-node-svg"/>
+                    <circle cx="60" cy="150" r="2" class="circuit-node-svg"/>
+                    <circle cx="40" cy="200" r="2" class="circuit-node-svg"/>
+                    <circle cx="60" cy="250" r="2" class="circuit-node-svg"/>
+                    <circle cx="40" cy="300" r="2" class="circuit-node-svg"/>
+                </g>
+            </svg>
         </div>
     </div>
 
