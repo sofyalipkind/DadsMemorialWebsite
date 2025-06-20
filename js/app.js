@@ -54,7 +54,6 @@ const galleryMedia = [
     '2025_Alcatraz.jpg',
     'At work 1.jpg',
     'At work 2.jpg',
-    'DSC09512_proc_714176590.jpg',
     'Flying Turkish 1.jpg',
     'Flying Turkish 2.jpg',
     'Half Moon Bay 2022.jpg',
