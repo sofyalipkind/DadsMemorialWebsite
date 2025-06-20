@@ -53,6 +53,7 @@ const galleryMedia = [
     '2020 Friends New Years.JPG',
     '2024_Yellowstone_cabin.jpg',
     '2024_Yellowstone_outside_cabin.jpg',
+    '2025 Alcatraz.JPG',
     '2025_Alcatraz.jpg',
     'Alex with a cat.jpg',
     'At work 1.jpg',
