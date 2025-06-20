@@ -71,12 +71,12 @@ const galleryMedia = [
     'Yellowstone. Old Faithful geyser.jpg',
     'kids.jpg',
     'navy_boys.jpg',
+    'snowmobile_tada.mp4',
     'teenage_karate.jpg',
     'Москва 4 января 2025.jpg',
     'Москва 4 января 2025_1.jpg',
     'Навеки в памяти _( .jpg',
-    'Щербинка апрель 2022.jpg',
-    'snowmobile_tada.mp4'
+    'Щербинка апрель 2022.jpg'
 ];
 
 function isVideo(filename) {
@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initializeGallery();
     await initializeMessageWall();
     initializeLightbox();
+    initializeMessageLightbox();
     initializeAnimations();
     
     // Language toggle
@@ -162,7 +163,7 @@ function initializeGallery() {
             img.loading = 'lazy';
             
             // Set dimensions immediately
-            img.style.height = '300px';
+            img.style.height = '390px';
             img.style.width = 'auto';
             
             
@@ -195,7 +196,7 @@ function initializeGalleryScroll() {
     
     // Update scroll position
     function updateScrollPosition() {
-        galleryGrid.style.transform = `translateX(${galleryScrollPosition}px)`;
+        galleryGrid.scrollLeft = Math.abs(galleryScrollPosition);
     }
     
     function startScrolling(direction) {
@@ -207,16 +208,16 @@ function initializeGalleryScroll() {
         
         scrollInterval = setInterval(() => {
             if (direction === 'left') {
-                galleryScrollPosition = Math.min(galleryScrollPosition + scrollSpeed, 0);
+                galleryScrollPosition = Math.max(galleryScrollPosition - scrollSpeed, 0);
             } else {
-                galleryScrollPosition = Math.max(galleryScrollPosition - scrollSpeed, -maxScroll);
+                galleryScrollPosition = Math.min(galleryScrollPosition + scrollSpeed, maxScroll);
             }
             
             updateScrollPosition();
             
             // Stop if we've reached the limits
-            if ((direction === 'left' && galleryScrollPosition >= 0) || 
-                (direction === 'right' && galleryScrollPosition <= -maxScroll)) {
+            if ((direction === 'left' && galleryScrollPosition <= 0) || 
+                (direction === 'right' && galleryScrollPosition >= maxScroll)) {
                 stopScrolling();
             }
         }, 16); // ~60fps
@@ -231,11 +232,10 @@ function initializeGalleryScroll() {
     }
     
     function getMaxScrollDistance() {
-        const container = document.querySelector('.gallery-container');
         const grid = document.querySelector('.gallery-grid');
-        if (!grid || !container) return 0;
+        if (!grid) return 0;
         
-        return Math.max(0, grid.scrollWidth - container.clientWidth + 100); // Add padding
+        return Math.max(0, grid.scrollWidth - grid.clientWidth);
     }
     
     // Handle wheel scrolling as well
@@ -243,9 +243,9 @@ function initializeGalleryScroll() {
     galleryContainer.addEventListener('wheel', (e) => {
         e.preventDefault();
         const maxScroll = getMaxScrollDistance();
-        const scrollAmount = e.deltaY > 0 ? -50 : 50;
+        const scrollAmount = e.deltaY > 0 ? 50 : -50;
         
-        galleryScrollPosition = Math.max(-maxScroll, Math.min(0, galleryScrollPosition + scrollAmount));
+        galleryScrollPosition = Math.max(0, Math.min(maxScroll, galleryScrollPosition + scrollAmount));
         updateScrollPosition();
     });
 }
@@ -517,6 +517,9 @@ async function renderMessages() {
                 <div class="message-date">${formattedDate}</div>
             `;
             
+            // Add click handler for lightbox
+            messageTile.addEventListener('click', () => openMessageLightbox(msg));
+            
             messageContainer.appendChild(messageTile);
         });
         
@@ -541,6 +544,9 @@ async function renderMessages() {
                 <div class="message-text">${escapeHtml(msg.message)}</div>
                 <div class="message-date">${formattedDate}</div>
             `;
+            
+            // Add click handler for lightbox
+            messageTile.addEventListener('click', () => openMessageLightbox(msg));
             
             messageContainer.appendChild(messageTile);
         });
@@ -579,6 +585,9 @@ function setupRealtimeMessages() {
                 <div class="message-date">${formattedDate}</div>
             `;
             
+            // Add click handler for lightbox
+            messageTile.addEventListener('click', () => openMessageLightbox(payload.new));
+            
             // Insert at the beginning to show newest messages first
             messageContainer.prepend(messageTile);
             observeElements(); // Re-observe for animation
@@ -610,6 +619,78 @@ function observeElements() {
     });
 }
 
+
+// Message Lightbox functions
+function initializeMessageLightbox() {
+    const messageLightbox = document.getElementById('message-lightbox');
+    const closeBtn = messageLightbox.querySelector('.message-lightbox-close');
+    
+    closeBtn.addEventListener('click', closeMessageLightbox);
+    
+    // Click outside to close
+    messageLightbox.addEventListener('click', (e) => {
+        if (e.target === messageLightbox) {
+            closeMessageLightbox();
+        }
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (messageLightbox.hidden) return;
+        
+        if (e.key === 'Escape') {
+            closeMessageLightbox();
+        }
+    });
+}
+
+function openMessageLightbox(message) {
+    const messageLightbox = document.getElementById('message-lightbox');
+    const author = messageLightbox.querySelector('.message-lightbox-author');
+    const text = messageLightbox.querySelector('.message-lightbox-text');
+    const date = messageLightbox.querySelector('.message-lightbox-date');
+    
+    // Set content
+    author.textContent = message.name || translations[currentLang].anonymous;
+    text.textContent = message.message;
+    
+    // Format date
+    const messageDate = new Date(message.created_at || message.date);
+    const formattedDate = messageDate.toLocaleDateString(currentLang === 'ru' ? 'ru-RU' : 'en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+    date.textContent = formattedDate;
+    
+    // Apply random font to the message text
+    const fonts = [
+        'Georgia, serif',
+        'Trebuchet MS, sans-serif',
+        'Times New Roman, serif',
+        'Verdana, sans-serif',
+        'Palatino, serif',
+        'Tahoma, sans-serif',
+        'Book Antiqua, serif',
+        'Arial, sans-serif',
+        'Garamond, serif',
+        'Helvetica, sans-serif'
+    ];
+    const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+    text.style.fontFamily = randomFont;
+    
+    // Show lightbox
+    messageLightbox.hidden = false;
+    setTimeout(() => messageLightbox.classList.add('active'), 10);
+}
+
+function closeMessageLightbox() {
+    const messageLightbox = document.getElementById('message-lightbox');
+    messageLightbox.classList.remove('active');
+    setTimeout(() => messageLightbox.hidden = true, 300);
+}
 
 // Utility functions
 function escapeHtml(text) {
