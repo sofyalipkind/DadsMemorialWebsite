@@ -1,0 +1,46 @@
+name: Sync Google Drive Photos
+
+on:
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        pip install requests
+    
+    - name: Run sync script
+      env:
+        GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      run: |
+        python sync_photos.py
+    
+    - name: Check for changes
+      id: check_changes
+      run: |
+        git diff --exit-code || echo "changes=true" >> $GITHUB_OUTPUT
+    
+    - name: Commit and push changes
+      if: steps.check_changes.outputs.changes == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add images/* js/app.js
+        git diff --staged --quiet || git commit -m "Sync photos from Google Drive [skip ci]"
+        git push
