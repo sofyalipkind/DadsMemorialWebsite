@@ -83,6 +83,7 @@ const galleryMedia = [
     'Wyoming 4.jpg',
     'Wyoming May 2025.jpg',
     'Yellowstone. Old Faithful geyser.jpg',
+    'imga0509.jpg',
     'kids.jpg',
     'navy_boys.jpg',
     'snowmobile_tada.mp4',
